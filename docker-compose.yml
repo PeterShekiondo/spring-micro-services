@@ -70,7 +70,6 @@ services:
       - "22181:2181"
     networks:
       - microservices-net
-
   kafka:
     image: confluentinc/cp-kafka:latest
     container_name: ms_kafka
