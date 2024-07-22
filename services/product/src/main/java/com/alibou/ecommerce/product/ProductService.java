@@ -35,7 +35,7 @@ public class ProductService {
         return repository.findAll()
                 .stream()
                 .map(mapper::toProductResponse)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Transactional(rollbackFor = ProductPurchaseException.class)
@@ -50,6 +50,8 @@ public class ProductService {
         if (productIds.size() != storedProducts.size()) {
             throw new ProductPurchaseException("One or more products does not exist");
         }
+
+
         var sortedRequest = request
                 .stream()
                 .sorted(Comparator.comparing(ProductPurchaseRequest::productId))
